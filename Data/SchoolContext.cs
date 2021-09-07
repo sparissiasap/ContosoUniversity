@@ -5,7 +5,10 @@ namespace ContosoUniversity.Data
 {
     public class SchoolContext : DbContext
     {
-        public SchoolContext(DbContextOptions<SchoolContext> options) : base(options) { }
+        public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
+        {
+        }
+
         public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Student> Students { get; set; }
@@ -14,6 +17,7 @@ namespace ContosoUniversity.Data
         public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
         public DbSet<CourseAssignment> CourseAssignments { get; set; }
         public DbSet<Person> People { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Course>().ToTable("Course");
@@ -25,17 +29,8 @@ namespace ContosoUniversity.Data
             modelBuilder.Entity<CourseAssignment>().ToTable("CourseAssignment");
             modelBuilder.Entity<Person>().ToTable("Person");
 
-            //RelationShips
-            modelBuilder.Entity<CourseAssignment>().HasKey(c => new { c.CourseID, c.InstructorID });
-
-            //Registry concurrendy Key
-            modelBuilder.Entity<Course>().Property(p => p.RowVersion).IsConcurrencyToken();
-            modelBuilder.Entity<CourseAssignment>().Property(p => p.RowVersion).IsConcurrencyToken();
-            modelBuilder.Entity<Department>().Property(p => p.RowVersion).IsConcurrencyToken();
-            modelBuilder.Entity<Enrollment>().Property(p => p.RowVersion).IsConcurrencyToken();
-            modelBuilder.Entity<Instructor>().Property(p => p.RowVersion).IsConcurrencyToken();
-            modelBuilder.Entity<OfficeAssignment>().Property(p => p.RowVersion).IsConcurrencyToken();
-            modelBuilder.Entity<Student>().Property(p => p.RowVersion).IsConcurrencyToken();
+            modelBuilder.Entity<CourseAssignment>()
+                .HasKey(c => new { c.CourseID, c.InstructorID });
         }
     }
 }

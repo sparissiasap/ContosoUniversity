@@ -23,11 +23,10 @@
     <tbody>
         @foreach (var item in Model.Instructors)
         {
-            string selectedRow = string.Empty;
-            string separator = " - ";
+            string selectedRow = "";
             if (item.ID == (int?)ViewData["InstructorID"])
             {
-                selectedRow = "table-success";
+                selectedRow = "success";
             }
             <tr class="@selectedRow">
                 <td>
@@ -46,9 +45,11 @@
                     }
                 </td>
                 <td>
-                    @foreach (var course in item.CourseAssignments)
-                    {
-                        @course.Course.CourseID @:  @course.Course.Title <br />
+                    @{
+                        foreach (var course in item.CourseAssignments)
+                        {
+                            @course.Course.CourseID @:  @course.Course.Title <br />
+                        }
                     }
                 </td>
                 <td>
@@ -75,7 +76,7 @@
 
         @foreach (var item in Model.Courses)
         {
-            string selectedRow = string.Empty;
+            string selectedRow = "";
             if (item.CourseID == (int?)ViewData["CourseID"])
             {
                 selectedRow = "success";

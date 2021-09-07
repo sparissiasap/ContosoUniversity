@@ -30,11 +30,6 @@ namespace ContosoUniversity.Migrations
                     b.Property<int>("DepartmentID")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
                     b.Property<string>("Title")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -53,11 +48,6 @@ namespace ContosoUniversity.Migrations
 
                     b.Property<int>("InstructorID")
                         .HasColumnType("int");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
 
                     b.HasKey("CourseID", "InstructorID");
 
@@ -111,11 +101,6 @@ namespace ContosoUniversity.Migrations
                     b.Property<int?>("Grade")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
                     b.Property<int>("StudentID")
                         .HasColumnType("int");
 
@@ -136,11 +121,6 @@ namespace ContosoUniversity.Migrations
                     b.Property<string>("Location")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
 
                     b.HasKey("InstructorID");
 
@@ -176,11 +156,6 @@ namespace ContosoUniversity.Migrations
 
                     b.Property<DateTime>("HireDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
 
                     b.ToTable("Instructor");
                 });
